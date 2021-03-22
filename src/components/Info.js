@@ -42,10 +42,22 @@ const Info = () => {
     <section className="section">
       <Wrapper className="section-center">
         {items.map((element) => {
-          return <p>element</p>;
+          return <Item key={element.id} {...element} />;
         })}
       </Wrapper>
     </section>
+  );
+};
+
+const Item = ({ icon, label, value, color }) => {
+  return (
+    <article className="item">
+      <span className={color}>{icon}</span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
+    </article>
   );
 };
 
