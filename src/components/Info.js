@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { GoRepo, GoGist } from "react-icons/go";
 import { GithubContext } from "../context/context";
@@ -7,7 +7,18 @@ import { FiUsers, FiUserPlus } from "react-icons/fi";
 const Info = () => {
   const { githubUser } = React.useContext(GithubContext);
   console.log(githubUser);
-  const { public_repos, followers, following, public_gists } = githubUser;
+  const {
+    public_repos,
+    followers,
+    following,
+    public_gists,
+  } = githubUser.mockUser;
+
+  //DEbugging
+
+  useEffect(() => {
+    console.log(public_repos);
+  }, [public_repos]);
 
   const items = [
     {
@@ -39,8 +50,6 @@ const Info = () => {
       color: "yellow",
     },
   ];
-
-  console.log(public_repos);
 
   return (
     <section className="section">
