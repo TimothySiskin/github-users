@@ -6,7 +6,7 @@ import { FiUsers, FiUserPlus } from "react-icons/fi";
 
 const Info = () => {
   const { githubUser } = React.useContext(GithubContext);
-  console.log(githubUser);
+
   const {
     public_repos,
     followers,
@@ -16,9 +16,7 @@ const Info = () => {
 
   //DEbugging
 
-  useEffect(() => {
-    console.log(public_repos);
-  }, [public_repos]);
+  useEffect(() => {}, [public_repos]);
 
   const items = [
     {
