@@ -36,7 +36,20 @@ return b.stars - a.stars;
 }).map((item)=>{
   return {...item, value: item.stars}
 }).slice(0, 5)
-  //Chart Data
+
+//stars & forks
+
+let {stars, forks} = reposArr.reduce((total, item)=>{
+  const {stargazers_count, name, forks} = item
+  total.stars[stargazers_count] = {label:name, value: stargazers_count,}
+  total.forks[forks] = {label: name, value: forks,}
+  return total
+}, {stars:{}, forks:{}})
+
+
+stars = Object.values(stars).slice(-5).reverse();
+forks = Object.values(forks).slice(-5).reverse();  
+//Chart Data
   const chartData = [
     {
       label: "HTML",
@@ -56,9 +69,9 @@ return b.stars - a.stars;
       <Wrapper className="section-center">
         
         <Pie3D data={mostUsed} />
-        <div></div>
+        <Column3D data={stars}/>
         <Doughnut2d data={mostPopular}/>
-        <div></div>
+        <Bar3D data={forks}/>
       </Wrapper>
     </section>
   );
