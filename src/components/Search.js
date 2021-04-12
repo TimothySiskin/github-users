@@ -7,8 +7,8 @@ const Search = () => {
   //Local State
   const [user, setUser] = useState("");
   //Global Context
-  const { requests } = React.useContext(GithubContext);
-  console.log(requests);
+  const { requests, error } = React.useContext(GithubContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user) {
@@ -22,6 +22,11 @@ const Search = () => {
   return (
     <section className="section">
       <Wrapper className="section-center">
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.msg}</p>
+          </ErrorWrapper>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch />
@@ -46,6 +51,19 @@ const Wrapper = styled.div`
   position: relative;
   display: grid;
   gap: 1rem 1.75rem;
+`;
+
+const ErrorWrapper = styled.article`
+  position: absolute;
+  width: 90vw;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  text-transform: capitalize;
+  p {
+    color: red;
+    letter-spacing: var(--spacing);
+  }
 `;
 
 export default Search;
