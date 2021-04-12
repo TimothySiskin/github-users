@@ -6,10 +6,10 @@ const Dashboard = () => {
     <main>
       <h2>Dashboard</h2>
       <Navbar />
-      <Repos />
-      <User />
       <Search />
       <Info />
+      <User />
+      <Repos />
     </main>
   );
 };
