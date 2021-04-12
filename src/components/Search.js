@@ -8,8 +8,14 @@ const Search = () => {
   const [user, setUser] = useState("");
   //Global Context
   const handleSubmit = (e) => {
-    //placeholder code
-    console.log(e);
+    e.preventDefault();
+    if (user) {
+      //Fetch data
+      //Empty user data
+      setUser("");
+    } else {
+      //Error: empty form
+    }
   };
   return (
     <section className="section">
@@ -17,10 +23,18 @@ const Search = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch />
-            <input type="text" placeholder="enter github user" />
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={user}
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+            />
             <button type="submit">search</button>
           </div>
         </form>
+        <h3>Request : 0 / 60</h3>
       </Wrapper>
     </section>
   );
