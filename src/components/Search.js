@@ -7,12 +7,13 @@ const Search = () => {
   //Local State
   const [user, setUser] = useState("");
   //Global Context
-  const { requests, error } = React.useContext(GithubContext);
+  const { requests, error, searchGithubUser } = React.useContext(GithubContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user) {
       //Fetch data
+      searchGithubUser(user);
       //Empty user data
       setUser("");
     } else {
