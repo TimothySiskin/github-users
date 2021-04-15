@@ -14,7 +14,7 @@ const Card = () => {
     bio,
     location,
     twitter_username,
-  } = githubUser.mockUser;
+  } = githubUser;
   return (
     <Wrapper>
       <header>

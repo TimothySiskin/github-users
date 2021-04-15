@@ -7,12 +7,7 @@ import { FiUsers, FiUserPlus } from "react-icons/fi";
 const Info = () => {
   const { githubUser } = React.useContext(GithubContext);
 
-  const {
-    public_repos,
-    followers,
-    following,
-    public_gists,
-  } = githubUser.mockUser;
+  const { public_repos, followers, following, public_gists } = githubUser;
 
   //DEbugging
 
