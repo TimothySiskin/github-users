@@ -7,7 +7,9 @@ const Search = () => {
   //Local State
   const [user, setUser] = useState("");
   //Global Context
-  const { requests, error, searchGithubUser } = React.useContext(GithubContext);
+  const { requests, error, searchGithubUser, loading } = React.useContext(
+    GithubContext
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +41,9 @@ const Search = () => {
                 setUser(e.target.value);
               }}
             />
-            {requests > 0 && <button type="submit">search</button>}
+            {requests > 0 && !loading === true && (
+              <button type="submit">search</button>
+            )}
           </div>
         </form>
         <h3>Request : {requests} / 60</h3>
