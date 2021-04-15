@@ -101,3 +101,11 @@ body {
   margin: 0 auto;
   max-width: 1170px;
 }
+
+.loading-img {
+  width: 20rem;
+  height: 20rem;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10rem;
+}
