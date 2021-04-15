@@ -22,6 +22,7 @@ const GithubProvider = ({ children }) => {
 
   const searchGithubUser = async (user) => {
     toggleError();
+    setLoading(true);
     const response = await axios(`${url}/users/${user}`).catch((err) => {
       console.log(err);
     });
@@ -30,9 +31,8 @@ const GithubProvider = ({ children }) => {
     } else {
       toggleError(true, "There is no user with that name!");
     }
-
-    console.log(response);
-    //setLoading(true)
+    checkRequests();
+    setLoading(false);
   };
 
   //check rate
@@ -68,6 +68,7 @@ const GithubProvider = ({ children }) => {
         requests,
         error,
         searchGithubUser,
+        loading,
       }}
     >
       {children}
