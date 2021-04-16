@@ -11,14 +11,16 @@ const GithubContext = React.createContext();
 //Provider & Consumer, i need only Provider thanks to useContext hook.
 
 const GithubProvider = ({ children }) => {
-  const [githubUser, setGithubUser] = useState({ mockUser });
-  const [repos, setRepos] = useState({ mockRepos });
-  const [followers, setFollowers] = useState({ mockFollowers });
+  const [githubUser, setGithubUser] = useState(mockUser);
+  const [repos, setRepos] = useState(mockRepos);
+  const [followers, setFollowers] = useState(mockFollowers);
   //request loading
   const [requests, setRequests] = useState(0);
   const [loading, setLoading] = useState(false);
   //error
   const [error, setError] = useState({ show: false, msg: "" });
+
+  //************************************************************************ */
 
   const searchGithubUser = async (user) => {
     toggleError();
@@ -28,6 +30,16 @@ const GithubProvider = ({ children }) => {
     });
     if (response) {
       setGithubUser(response.data);
+
+      //repos
+      const { login, followers_url } = response.data;
+      axios(`${url}/users/${login}/repos?per_page=100`).then((res) => {
+        setRepos(res.data);
+      });
+      //followers
+      axios(`${followers_url}?per_page=100`).then((res) => {
+        setFollowers(res.data);
+      });
     } else {
       toggleError(true, "There is no user with that name!");
     }
