@@ -33,12 +33,19 @@ const GithubProvider = ({ children }) => {
 
       //repos
       const { login, followers_url } = response.data;
-      axios(`${url}/users/${login}/repos?per_page=100`).then((res) => {
-        setRepos(res.data);
-      });
-      //followers
-      axios(`${followers_url}?per_page=100`).then((res) => {
-        setFollowers(res.data);
+
+      await Promise.allSettled([
+        axios(`${url}/users/${login}/repos?per_page=100`),
+        axios(`${followers_url}?per_page=100`),
+      ]).then((response) => {
+        const [repos, followers] = response;
+        const status = "fulfilled";
+        if (repos.status === status) {
+          setRepos(repos.value.data);
+        }
+        if (followers.status === status) {
+          setFollowers(followers.value.data);
+        }
       });
     } else {
       toggleError(true, "There is no user with that name!");
@@ -56,7 +63,10 @@ const GithubProvider = ({ children }) => {
         } = data;
         setRequests(remaining);
         if (remaining === 0) {
-          toggleError(true, "sorry, no more remaining requests");
+          toggleError(
+            true,
+            "sorry, no more remaining requests. Try again one hour later!"
+          );
         }
       })
       .catch((err) => {
