@@ -7,7 +7,6 @@ const Dashboard = () => {
   if (loading) {
     return (
       <main>
-        <Navbar />
         <Search />
         <img src={loadingImage} className="loading-img" alt="loading" />
       </main>
@@ -16,7 +15,6 @@ const Dashboard = () => {
 
   return (
     <main>
-      <Navbar />
       <Search />
       <Info />
       <User />
