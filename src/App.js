@@ -1,13 +1,12 @@
 import React from "react";
 import { Dashboard, Login, Error } from "./pages";
-import { Switch, Route } from "react-router-dom";
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Switch>
-        <Route path="/" exact={true}>
+        <Route path="/github-users" exact={true}>
           <Dashboard />
         </Route>
         <Route path="/login">
