@@ -1,10 +1,11 @@
 import React from "react";
 import { Dashboard, Login, Error } from "./pages";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
-function App() {
+https: function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/" exact={true}>
           <Dashboard />
