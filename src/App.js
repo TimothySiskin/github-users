@@ -3,7 +3,7 @@ import { Dashboard, Login, Error } from "./pages";
 import { Switch, Route } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 
-https: function App() {
+function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Switch>
